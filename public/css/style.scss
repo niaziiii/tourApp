@@ -1,0 +1,70 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    /* overflow: hidden; */
+    /* width: 80%; */
+    margin: auto;
+    background-color: gainsboro;
+}
+@font-face {
+    font-family: 'Gelion';
+    src: url('../font-style/GelionReg.ttf');
+ }
+$base-font: Gelion;
+
+@import './modules/header&Footer';
+@import './modules/productCarts';
+@import './modules/tour';
+@import './modules/login';
+@import './modules/myaccount';
+
+
+
+
+
+.section-error{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+    &__container{
+         width: 60%;
+         margin: auto;
+         height: 70vh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         h1{
+             margin-bottom: 4rem;
+             font-size: 3rem;
+         }
+         p{
+             font-size: 2rem;
+         }
+    }
+}
+
+.alertMsg { 
+    padding: 2rem;
+    position: fixed;
+    background-color: black;
+    color: white;
+    width: 60%;
+    top: 5%;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    text-align: center;
+    h1{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+}
+
+.login-fail{background-color: red;}
+.login-success{ background-color: greenyellow;}
+

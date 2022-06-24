@@ -1,0 +1,37 @@
+extends base
+block content 
+    section.section-main 
+        .card-container
+            each data in allTours
+                .card
+                    .card-header
+                        .card-header-layer 
+                        img(src=`${data.imageCover}`, alt=`${data.slug}`)
+                        .card-header-name
+                          h2= data.name
+                    .card-details 
+                        h5.card-details__heading= `${data.difficulty.toUpperCase()} ${data.duration}-Days Tour`
+                        p.card-details__description= data.summary
+                        ul.card-details__dataLists 
+                            li.card-details__dataLists__list 
+                                i(class='fa fa-map-marker') 
+                                span= ` ${data.startLocation.description}`
+                            li.card-details__dataLists__list 
+                                i(class='fa fa-calendar') 
+                                span=`  ${data.startDates[0].toLocaleString('en-us', {month: 'long', year:'numeric'})}`
+                            li.card-details__dataLists__list 
+                                i(class='fa fa-flag') 
+                                span= ` ${data.locations.length} Stops`
+                            li.card-details__dataLists__list 
+                                i(class='fa fa-user') 
+                                span= ` ${data.maxGroupSize} Peoples`                
+                    .card-footer 
+                        .card-footer__left 
+                            p.card-footer__left__container 
+                                b= `$${data.price}  `
+                                span Per Person
+                            p.card-footer__left__container 
+                                b= `${data.rattingAverage} `
+                                span=  ` Rating (${data.ratingQauntity})`
+                        .card-footer__right
+                            a(href=`/tour/${data.slug}`) Details

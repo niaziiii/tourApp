@@ -1,0 +1,25 @@
+mixin reviewCard(reviewBox)
+    .section__reviews__wraper__box
+    .section__reviews__wraper__reviews
+        .section__reviews__wraper__reviews__header
+            .section__reviews__wraper__reviews__header__img
+                img(src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img")
+            span  
+                h4= reviewBox.user.name 
+
+        .section__reviews__wraper__reviews__text
+            p= reviewBox.review
+
+        .section__reviews__wraper__reviews__ratting
+            - if(reviewBox.ratting === 1 )  
+                span ⭐
+            - if(reviewBox.ratting === 2 )  
+                span ⭐⭐
+            - if(reviewBox.ratting === 3 )  
+                span ⭐⭐⭐                                      
+            - if(reviewBox.ratting === 4 )  
+                span ⭐⭐⭐⭐                                   
+            - if(reviewBox.ratting === 5 )  
+                span ⭐⭐⭐⭐⭐
+
+

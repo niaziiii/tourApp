@@ -1,0 +1,222 @@
+extends base
+include _reviewCard
+block append head 
+        //- script(src='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js')
+        link(href='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet')
+
+        //- script(src='/js/map.js')
+
+
+block content 
+        // main section begain from here
+        section.section-main-tour 
+                img(src=`${data.imageCover}`, alt=`${data.slug}`)
+                .section-main-tour__overlay
+                .section-main-tour__details
+                        h1.section-heading= `${data.name}`
+                        .section-main-tour__details__container
+                                p= `${data.duration} Days`
+                                p= `${data.startLocation.description}`
+
+
+        section.section-details
+                .section-details__wraper 
+                        .section-details__right
+                                .section-details__right__quickFacts 
+                                        h2.section-heading Quick Facts
+                                        .section-details__right__quickFacts__items 
+                                                .section-details__right__quickFacts__row 
+                                                        i(class="fa-solid fa-calendar")
+                                                        b Next Date
+                                                        p=`${data.startDates[0].toLocaleString('en-us', {month: 'long', year:'numeric'})}`
+                                                .section-details__right__quickFacts__row 
+                                                        i(class="fa-solid fa-chart-line") 
+                                                        b Difficulty
+                                                        p= data.difficulty
+                                                .section-details__right__quickFacts__row 
+                                                        i(class="fa-solid fa-user")
+                                                        b Participantas
+                                                        p= data.maxGroupSize
+                                                .section-details__right__quickFacts__row 
+                                                        i(class="fa-regular fa-star")
+                                                        b Rattings
+                                                        p= data.rattingAverage
+
+                                .section-details__right__quickFacts 
+                                        h2.section-heading Your Tour Guides
+                                        .section-details__right__quickFacts__items 
+
+                                                each guides in data.guides
+                                                        .section-details__right__quickFacts__row 
+                                                                i(class="fa-solid fa-user")
+                                                                b= guides.name
+                                                                p= guides.email
+
+                        .section-details__left 
+                                .section-details__left__container 
+                                        h2.section-heading= `About ${data.name}`
+                                        p= data.descripion
+
+
+        section.section__imgs
+                .section__imgs__imgs
+                        each tourImgs in data.images
+                                .section__imgs__imgs__wraper
+                                        img(src=tourImgs)
+
+
+
+        section.section__reviews
+                .section__reviews__wraper
+                        each reviewBox in data.reviews
+                                +reviewCard(reviewBox)
+
+        section.section__Map 
+           .section__Map__wraper
+                .section__Map__wraper__left 
+                        h1 What are you waiting for 
+                        p= `${data.duration} Days, 1 Adventure, infinite memories, make it today.`
+                .section__Map__wraper__right 
+                        if(user)
+                                button#book_Btn(data-id=`${data.id}`) Book Now
+                        else
+                                a(href="/login") Login to Book tour 
+
+
+
+
+
+
+
+
+
+
+//-     <section class="section__reviews">
+        <div class="section__reviews__wraper">
+                <div class="section__reviews__wraper__box">
+                        <div class="section__reviews__wraper__reviews">
+                                <div class="section__reviews__wraper__reviews__header">
+                                        <div class="section__reviews__wraper__reviews__header__img">
+                                                <img src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img">
+                                </div>
+                                <span><h4>MK niazi</h4></span>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga vel, voluptatem itaque cum exercitationem tempore odit officiis! Asperiores ipsam animi repudiandae ipsum iusto, aliquam ad. Expedita hic illum ipsum?</p>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__ratting">
+                                        <span>⭐⭐⭐⭐⭐</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="section__reviews__wraper__box">
+                        <div class="section__reviews__wraper__reviews">
+                                <div class="section__reviews__wraper__reviews__header">
+                                        <div class="section__reviews__wraper__reviews__header__img">
+                                                <img src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img">
+                                </div>
+                                <span><h4>MK niazi</h4></span>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga vel, voluptatem itaque cum exercitationem tempore odit officiis! Asperiores ipsam animi repudiandae ipsum iusto, aliquam ad. Expedita hic illum ipsum?</p>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__ratting">
+                                        <span>⭐⭐⭐⭐⭐</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="section__reviews__wraper__box">
+                        <div class="section__reviews__wraper__reviews">
+                                <div class="section__reviews__wraper__reviews__header">
+                                        <div class="section__reviews__wraper__reviews__header__img">
+                                                <img src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img">
+                                </div>
+                                <span><h4>MK niazi</h4></span>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga vel, voluptatem itaque cum exercitationem tempore odit officiis! Asperiores ipsam animi repudiandae ipsum iusto, aliquam ad. Expedita hic illum ipsum?</p>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__ratting">
+                                        <span>⭐⭐⭐⭐⭐</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="section__reviews__wraper__box">
+                        <div class="section__reviews__wraper__reviews">
+                                <div class="section__reviews__wraper__reviews__header">
+                                        <div class="section__reviews__wraper__reviews__header__img">
+                                                <img src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img">
+                                </div>
+                                <span><h4>MK niazi</h4></span>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga vel, voluptatem itaque cum exercitationem tempore odit officiis! Asperiores ipsam animi repudiandae ipsum iusto, aliquam ad. Expedita hic illum ipsum?</p>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__ratting">
+                                        <span>⭐⭐⭐⭐⭐</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="section__reviews__wraper__box">
+                        <div class="section__reviews__wraper__reviews">
+                                <div class="section__reviews__wraper__reviews__header">
+                                        <div class="section__reviews__wraper__reviews__header__img">
+                                                <img src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img">
+                                </div>
+                                <span><h4>MK niazi</h4></span>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga vel, voluptatem itaque cum exercitationem tempore odit officiis! Asperiores ipsam animi repudiandae ipsum iusto, aliquam ad. Expedita hic illum ipsum?</p>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__ratting">
+                                        <span>⭐⭐⭐⭐⭐</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="section__reviews__wraper__box">
+                        <div class="section__reviews__wraper__reviews">
+                                <div class="section__reviews__wraper__reviews__header">
+                                        <div class="section__reviews__wraper__reviews__header__img">
+                                                <img src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img">
+                                </div>
+                                <span><h4>MK niazi</h4></span>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga vel, voluptatem itaque cum exercitationem tempore odit officiis! Asperiores ipsam animi repudiandae ipsum iusto, aliquam ad. Expedita hic illum ipsum?</p>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__ratting">
+                                        <span>⭐⭐⭐⭐⭐</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="section__reviews__wraper__box">
+                        <div class="section__reviews__wraper__reviews">
+                                <div class="section__reviews__wraper__reviews__header">
+                                        <div class="section__reviews__wraper__reviews__header__img">
+                                                <img src="https://images.unsplash.com/photo-1422224832140-0e546210efc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Zm9ycmVzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" alt="" class="section-main-tour__img">
+                                </div>
+                                <span><h4>MK niazi</h4></span>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga vel, voluptatem itaque cum exercitationem tempore odit officiis! Asperiores ipsam animi repudiandae ipsum iusto, aliquam ad. Expedita hic illum ipsum?</p>
+                                </div>
+                                <div class="section__reviews__wraper__reviews__ratting">
+                                        <span>⭐⭐⭐⭐⭐</span>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+

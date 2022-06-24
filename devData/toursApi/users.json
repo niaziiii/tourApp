@@ -1,0 +1,44 @@
+{
+   "users": [ 
+    {
+        "name": "Ali King",
+        "email":"ali@mail.com",
+        "password":"qwerty1234",
+        "confirmPassword": "qwerty1234"
+    },
+    {
+        "name": "Faisal King",
+        "email":"faisal@mail.com",
+        "password":"qwerty1234",
+        "confirmPassword": "qwerty1234"
+
+    },
+    {
+        "name": "Mr Falak",
+        "email":"falak@mail.com",
+        "password":"qwerty1234",
+        "confirmPassword": "qwerty1234"
+    },
+    {
+        "name": "Mr Zionist",
+        "email":"malik@mail.com",
+        "password":"qwerty1234",
+        "confirmPassword": "qwerty1234",
+        "role": "lead-guide"
+    },
+    {
+        "name": "muhabat",
+        "email":"muhabat@mail.com",
+        "password":"qwerty1234",
+        "confirmPassword": "qwerty1234",
+        "role" : "admin"
+    },
+    {
+        "name": "Niazi",
+        "email":"niazi@mail.com",
+        "password":"qwerty1234",
+        "confirmPassword": "qwerty1234",
+        "role": "admin"
+    }
+    ]
+}

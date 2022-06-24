@@ -1,0 +1,72 @@
+extends base
+block content
+
+    mixin listsAccount(name,icon,targets)
+        button.tablinks(href="#" data-targets=`${targets}`)
+            i(class=`${icon}` aria-hidden="true")
+            span= name  
+
+    mixin BookingBox(obj)
+        .Myaccount__container__bookings__box 
+            .img    
+                img(src=`${obj.tour.imageCover}`, alt=`${obj.tour.name}`) 
+            p=`${obj.tour.name}`
+            span=`Paid ${obj.price}$` 
+
+
+
+
+    .section-Myaccount
+        .section-Myaccount__container
+            .section-Myaccount__container__left
+                .section-Myaccount__container__left__nav
+                    .section-Myaccount__container__left__nav__menu
+                        +listsAccount('setting', 'fa fa-cog','firstTab')
+                        +listsAccount('My Bookings', 'fa-solid fa-bag-shopping', 'secondTab')
+                        +listsAccount('My Reviews', 'fa-regular fa-star','thirdTab')
+                        +listsAccount('Billing', 'fa-solid fa-money-bill','fourthTab' )
+                    - if(user.role === 'admin')
+                        .section-Myaccount__container__left__nav__admin-menu
+                            h3.admin-line Admin-responsibilities
+                            +listsAccount('Manage Tour', 'fa-solid fa-store')
+                            +listsAccount('Manage Users', 'fa-solid fa-user')
+                            +listsAccount('Manage Review', 'fa-regular fa-star')
+                            +listsAccount('Manage Bookings', 'fa-solid fa-bag-shopping')
+
+
+            .section-Myaccount__container__right
+                .section-Myaccount__container__right__myaccount
+                    .tabcontent(id="firstTab" class="active")
+                        h1 Your Profile
+                        form(action="/"  class="myaccountform")
+                            label(for="name") Name
+                            input(type="text" name="name" value=`${user.name}` class="myaccountform__name" required) 
+                            label(for="email") Email Address
+                            input(type="text" name="email" value=`${user.email}` class="myaccountform__email" required)
+                            .section-Myaccount__container__right__myaccount__img
+                                img(src= `./images/users/${user.photo? user.photo: 'default.png' }`, alt="")
+                                input(type="file" href="#" accept="image/*" id="myaccountform__photo") 
+                            input(type="submit" value="Save Setting" class="myaccountform__submit")   
+
+                    .tabcontent(id="secondTab")
+                        h1 Your Bookings
+                        .Myaccount__container__bookings
+                            -if(booked.length > 0)
+                                each booking in booked
+                                    +BookingBox(booking)
+                            -else 
+                                p Sorry! You havent booked any Tour
+
+
+
+                    .tabcontent(id="thirdTab")
+                        h3 My Reviews
+                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    .tabcontent(id="fourthTab")
+                        h3 Billing
+                        p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+
+
+
+

@@ -1,0 +1,15 @@
+    <!-- Header -->
+header 
+    .logo
+        a(href="/")
+            h1 My App 
+    ul
+            if user 
+                li: a(href="/myAccount")
+                    .img 
+                        img(src=`/images/users/${user.photo? user.photo: 'default.png' }`, alt=`${user.name}`)
+                    span= `${user.name.charAt(0).toUpperCase() + user.name.slice(1)} `              
+                li: a.logoutBtn(href="#") Logout 
+            else
+                li: a(href="#") Sign up
+                li: a(href="/login", class="activeBtn") Login
