@@ -40,7 +40,7 @@ const updateProfile = () => {
     form.append('email', document.querySelector('.myaccountform__email').value)
     form.append('photo', document.getElementById('myaccountform__photo').files[0])
 
-    console.log(form);
+    // console.log(form);
     profileSettingSave(form, 'data')
   })
 }

@@ -7,7 +7,7 @@ export const book = async (id) => {
     try {
         const res = await axios({
             method: 'GET',
-            url: `http://127.0.0.1:3000/api/v1/bookings/check-out-session/${id}`
+            url: `/api/v1/bookings/check-out-session/${id}`
         })
 
         const { data } = res
