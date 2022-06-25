@@ -6,6 +6,13 @@ const app = require('./index');
 // const { tour } = require('./routes/tourRoute');
 dotenv.config({ path: `./config.env` });
 
+
+
+process.on("uncaughtException", (err) => {
+    console.log("UNCAUGHT EXCEPTION, APP SHUTTING NOW!!");
+    console.log(err.message, err.name);
+    process.exit(1);
+  });
 //  using mongoose labriry to set mongoDb
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DBPASS)
 mongoose
