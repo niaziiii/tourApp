@@ -5,7 +5,7 @@ export const loginUser = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://127.0.0.1:3000/api/v1/user/login',
+      url: '/api/v1/user/login',
       data: {
         email,
         password
@@ -29,7 +29,7 @@ export const logoutUser = async () => {
   try {
     const res = await axios({
       method: 'Get',
-      url: 'http://127.0.0.1:3000/api/v1/user/logout',
+      url: '/api/v1/user/logout',
     })
 
 

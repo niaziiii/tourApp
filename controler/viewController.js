@@ -8,7 +8,6 @@ const bookingModel = require('./../models/bookingmodel');
 
 module.exports.overviewPage = catchAsync(async (req, res, next) => {
     const allTours = await Tour.find();
-
     res.status(200).render('overview', {
         title: 'Overview Page',
         allTours

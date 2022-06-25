@@ -6,6 +6,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 // const pug = require('pug');
 const path = require('path')
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utilties/appError')
 const globalErrorHandler = require('./controler/errorControler')
@@ -56,6 +57,8 @@ app.use(hpp({
         'difficulty',
         'price']
 }))
+
+app.use(compression())
 
 
 

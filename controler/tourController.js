@@ -45,7 +45,7 @@ exports.getTourStats = catchAsync(async (req, res, next) => {
 exports.getMonthly = async (req, res, next) => {
     try {
         const year = req.params.year;
-        console.log(year)
+        // console.log(year)
         const monthly = await Tour.aggregate([
             {
                 $unwind: '$startDates'
@@ -82,7 +82,7 @@ exports.tourWitin = catchAsync(async (req, res, next) => {
     const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
 
     if(!latlng || !distance ||!unit) return next(new AppError('The given values are wrong',400))
-    console.log(radius, lat,lng,unit, distance);
+    // console.log(radius, lat,lng,unit, distance);
 
     const data = await Tour.find({ startLocation: { $geoWithin: { centerSphere: [[lat,lng], radius] } } });
 

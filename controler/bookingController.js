@@ -8,11 +8,11 @@ module.exports.getCheckOutSession = catchAsync(async (req, res, next) => {
     const stripe = Stripe(`${process.env.STRIPE_SECRET_KEY}`)
 
     const tour = await Tour.findById(req.params.tourId)
-
+    
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        success_url: `http://127.0.0.1:3000/?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
-        cancel_url: `http://127.0.0.1:3000/tour/${tour.slug}`,
+        success_url: `${req.protocol}://${req.get('host')}?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price}`,
+        cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
         customer_email: req.user.email,
         client_reference_id: req.params.tourId,
         line_items: [{
@@ -37,5 +37,5 @@ module.exports.createBookingCheckout = catchAsync(async (req, res, next) => {
     const { tour, user, price } = req.query;
     if (!price && !tour && !user) return next();
     await bookingModel.create({ tour, user, price })
-    res.redirect(`http://127.0.0.1:3000/`)
+    res.redirect(`${req.protocol}://${req.get('host')}`)
 })
